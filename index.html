@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فیزیک هشتم - استاد مصطفی طاهریان</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .english {
+            font-family: 'Poppins', sans-serif;
+        }
+        .dark-mode {
+            background-color: #1a202c;
+            color: #f7fafc;
+        }
+        .dark-mode .bg-white {
+            background-color: #2d3748 !important;
+        }
+        .dark-mode .text-gray-800 {
+            color: #f7fafc !important;
+        }
+        .dark-mode .border-gray-200 {
+            border-color: #4a5568 !important;
+        }
+        .physics-icon {
+            transition: transform 0.3s ease;
+        }
+        .physics-icon:hover {
+            transform: scale(1.1);
+        }
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Dark Mode Toggle -->
+    <div class="fixed bottom-4 left-4 z-50">
+        <button id="darkModeToggle" class="bg-blue-900 text-yellow-300 p-3 rounded-full shadow-lg hover:bg-blue-800 transition">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-900 text-yellow-300 p-2 rounded-full">
+                    <i class="fas fa-atom text-xl"></i>
+                </div>
+                <span class="font-bold text-xl text-blue-900">فیزیک هشتم</span>
+            </div>
+            <div class="hidden md:flex space-x-6 space-x-reverse">
+                <a href="#home" class="text-blue-900 hover:text-yellow-400 font-medium">خانه</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-900 font-medium">درباره من</a>
+                <a href="#lessons" class="text-gray-600 hover:text-blue-900 font-medium">درس‌ها</a>
+                <a href="#fun" class="text-gray-600 hover:text-blue-900 font-medium">فیزیک جالب</a>
+                <a href="#resources" class="text-gray-600 hover:text-blue-900 font-medium">منابع</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-900 font-medium">تماس</a>
+            </div>
+            <button id="mobileMenuButton" class="md:hidden text-blue-900">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white py-2 px-4 shadow-lg">
+            <a href="#home" class="block py-2 text-blue-900 hover:text-yellow-400 font-medium">خانه</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-blue-900 font-medium">درباره من</a>
+            <a href="#lessons" class="block py-2 text-gray-600 hover:text-blue-900 font-medium">درس‌ها</a>
+            <a href="#fun" class="block py-2 text-gray-600 hover:text-blue-900 font-medium">فیزیک جالب</a>
+            <a href="#resources" class="block py-2 text-gray-600 hover:text-blue-900 font-medium">منابع</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-blue-900 font-medium">تماس</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="py-16 md:py-24 bg-gradient-to-b from-blue-900 to-blue-800 text-white">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">سلام، من مصطفی طاهریان هستم</h1>
+                <p class="text-xl mb-8">معلم فیزیک پایه هشتم - کشف زیبایی‌های فیزیک با هم</p>
+                <div class="flex space-x-4 space-x-reverse">
+                    <a href="#lessons" class="bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-bold py-3 px-6 rounded-full transition">شروع یادگیری</a>
+                    <a href="#about" class="border-2 border-white hover:bg-white hover:text-blue-900 font-bold py-3 px-6 rounded-full transition">درباره من</a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocKWHkvPrAOtlceHh7p86cO3W91zbfNe2WSbqzFxQY9DYpB1cP3z=s432-c-no" alt="Physics teacher" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-yellow-400 shadow-xl">
+                    <div class="absolute -bottom-5 -right-5 bg-white p-4 rounded-full shadow-lg">
+                        <i class="fas fa-atom text-3xl text-blue-900"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">درباره من</h2>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto"></div>
+            </div>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                    <img src="https://lh3.googleusercontent.com/a/ACg8ocKWHkvPrAOtlceHh7p86cO3W91zbfNe2WSbqzFxQY9DYpB1cP3z=s432-c-no">
+                </div>
+                <div class="md:w-2/3 md:pr-8">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">مصطفی طاهریان</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        معلم فیزیک با ۱۰ سال سابقه تدریس در مدارس متوسطه اول. فارغ‌التحصیل کارشناسی ارشد فیزیک از دانشگاه تهران. عاشق این هستم که مفاهیم پیچیده فیزیک را به زبان ساده و جذاب برای دانش‌آموزانم توضیح دهم. معتقدم هر دانش‌آموزی می‌تواند فیزیک را درک کند، فقط نیاز به روش درست آموزش دارد.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-graduation-cap text-blue-900"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900">تحصیلات</h4>
+                                <p class="text-gray-600">کارشناسی ارشد فیزیک - دانشگاه تهران</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-chalkboard-teacher text-blue-900"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900">تجربه تدریس</h4>
+                                <p class="text-gray-600">۱۰ سال در مدارس متوسطه اول</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-lightbulb text-blue-900"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900">روش تدریس</h4>
+                                <p class="text-gray-600">تعاملی، مبتنی بر آزمایش و کشف</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-heart text-blue-900"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-blue-900">علاقه‌مندی</h4>
+                                <p class="text-gray-600">فیزیک کوانتوم و نجوم</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lessons Section -->
+    <section id="lessons" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">درس‌های فیزیک هشتم</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">مطالب درسی مطابق با کتاب درسی فیزیک پایه هشتم ایران</p>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Lesson 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 lesson-card">
+                    <div class="h-48 bg-blue-900 flex items-center justify-center">
+                        <i class="fas fa-vial text-white text-6xl physics-icon floating"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">فصل ۱: ماده و ویژگی‌های آن</h3>
+                        <p class="text-gray-600 mb-4">حالت‌های ماده، تغییر حالت، چگالی و فشار</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">ویدیو</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">جزوه</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">تمرین</span>
+                        </div>
+                        <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center">
+                            شروع یادگیری
+                            <i class="fas fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Lesson 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 lesson-card">
+                    <div class="h-48 bg-blue-900 flex items-center justify-center">
+                        <i class="fas fa-weight-hanging text-white text-6xl physics-icon floating"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">فصل ۲: نیرو</h3>
+                        <p class="text-gray-600 mb-4">انواع نیروها، نیروی اصطکاک، نیروی گرانش</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">ویدیو</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">جزوه</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">تمرین</span>
+                        </div>
+                        <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center">
+                            شروع یادگیری
+                            <i class="fas fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Lesson 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 lesson-card">
+                    <div class="h-48 bg-blue-900 flex items-center justify-center">
+                        <i class="fas fa-bolt text-white text-6xl physics-icon floating"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">فصل ۳: انرژی</h3>
+                        <p class="text-gray-600 mb-4">انواع انرژی، تبدیل انرژی، پایستگی انرژی</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">ویدیو</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">جزوه</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">تمرین</span>
+                        </div>
+                        <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center">
+                            شروع یادگیری
+                            <i class="fas fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Lesson 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 lesson-card">
+                    <div class="h-48 bg-blue-900 flex items-center justify-center">
+                        <i class="fas fa-tachometer-alt text-white text-6xl physics-icon floating"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">فصل ۴: فشار</h3>
+                        <p class="text-gray-600 mb-4">فشار در مایعات، فشار هوا، قانون پاسکال</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">ویدیو</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">جزوه</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">تمرین</span>
+                        </div>
+                        <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center">
+                            شروع یادگیری
+                            <i class="fas fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Lesson 5 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 lesson-card">
+                    <div class="h-48 bg-blue-900 flex items-center justify-center">
+                        <i class="fas fa-temperature-high text-white text-6xl physics-icon floating"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">فصل ۵: گرما</h3>
+                        <p class="text-gray-600 mb-4">انرژی گرمایی، انتقال گرما، انبساط گرمایی</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">ویدیو</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">جزوه</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">تمرین</span>
+                        </div>
+                        <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center">
+                            شروع یادگیری
+                            <i class="fas fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Lesson 6 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden transition duration-300 lesson-card">
+                    <div class="h-48 bg-blue-900 flex items-center justify-center">
+                        <i class="fas fa-lightbulb text-white text-6xl physics-icon floating"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">فصل ۶: نور</h3>
+                        <p class="text-gray-600 mb-4">بازتاب نور، شکست نور، عدسی‌ها و آینه‌ها</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">ویدیو</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">جزوه</span>
+                            <span class="bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm">تمرین</span>
+                        </div>
+                        <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center">
+                            شروع یادگیری
+                            <i class="fas fa-arrow-left mr-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition">
+                    مشاهده همه درس‌ها
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Physics Section -->
+    <section id="fun" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">فیزیک جالب</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">حقایق شگفت‌انگیز و جذاب درباره فیزیک که شما را به فکر وا می‌دارد!</p>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <!-- Fun Fact 1 -->
+                <div class="bg-gray-50 rounded-xl p-6 flex items-start">
+                    <div class="bg-yellow-400 text-blue-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-question text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">چرا آسمان آبی است؟</h3>
+                        <p class="text-gray-600">
+                            نور خورشید هنگام عبور از جو زمین توسط مولکول‌های هوا پراکنده می‌شود. نور آبی بیشتر از نور قرمز پراکنده می‌شود، زیرا طول موج کوتاه‌تری دارد. به همین دلیل است که آسمان در روز آبی به نظر می‌رسد!
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Fun Fact 2 -->
+                <div class="bg-gray-50 rounded-xl p-6 flex items-start">
+                    <div class="bg-yellow-400 text-blue-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-apple-alt text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">سیب نیوتن</h3>
+                        <p class="text-gray-600">
+                            داستان معروف افتادن سیب روی سر نیوتن ممکن است اغراق شده باشد، اما این مشاهده واقعاً به او کمک کرد تا قانون گرانش جهانی را فرموله کند. نیرویی که باعث سقوط سیب می‌شود همان نیرویی است که ماه را در مدار زمین نگه می‌دارد!
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Fun Fact 3 -->
+                <div class="bg-gray-50 rounded-xl p-6 flex items-start">
+                    <div class="bg-yellow-400 text-blue-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-atom text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">اتم‌ها بیشتر فضای خالی هستند!</h3>
+                        <p class="text-gray-600">
+                            اگر هسته اتم را به اندازه یک توپ فوتبال در نظر بگیریم، الکترون‌ها در فاصله حدود ۵ کیلومتری دور آن می‌چرخند! یعنی بیشتر فضای اتم خالی است. پس شما هم بیشتر از فضای خالی ساخته شده‌اید!
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Fun Fact 4 -->
+                <div class="bg-gray-50 rounded-xl p-6 flex items-start">
+                    <div class="bg-yellow-400 text-blue-900 p-3 rounded-full mr-4">
+                        <i class="fas fa-clock text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-blue-900 mb-2">زمان در فضا متفاوت می‌گذرد!</h3>
+                        <p class="text-gray-600">
+                            بر اساس نظریه نسبیت اینشتین، زمان برای کسی که با سرعت بالا حرکت می‌کند یا در میدان گرانشی قوی قرار دارد، کندتر می‌گذرد. فضانوردان در ایستگاه فضایی بین‌المللی هر سال حدود ۰.۰۰۷ ثانیه کمتر از ما روی زمین پیر می‌شوند!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-blue-900 rounded-xl p-8 text-white">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 mb-6 md:mb-0">
+                        <h3 class="text-2xl font-bold mb-4">آزمایش‌های جذاب فیزیک در خانه</h3>
+                        <p class="mb-6">
+                            می‌خواهید فیزیک را به صورت عملی تجربه کنید؟ در بخش آزمایش‌های خانگی ما، یاد می‌گیرید چگونه با وسایل ساده خانه آزمایش‌های جالب فیزیکی انجام دهید!
+                        </p>
+                        <a href="#" class="inline-block bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-bold py-2 px-6 rounded-full transition">
+                            مشاهده آزمایش‌ها
+                        </a>
+                    </div>
+                    <div class="md:w-1/3 flex justify-center">
+                        <i class="fas fa-flask text-6xl text-yellow-400 physics-icon floating"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">منابع آموزشی</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">دانلود جزوات، نمونه سوالات و ویدیوهای آموزشی</p>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Resource 1 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <div class="bg-blue-100 text-blue-900 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-file-pdf text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">جزوات خلاصه</h3>
+                    <p class="text-gray-600 mb-4">خلاصه‌ای از تمام فصل‌های کتاب درسی به همراه نکات کلیدی</p>
+                    <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center justify-center">
+                        دانلود
+                        <i class="fas fa-download mr-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Resource 2 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <div class="bg-blue-100 text-blue-900 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-question-circle text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">نمونه سوالات</h3>
+                    <p class="text-gray-600 mb-4">مجموعه‌ای از سوالات امتحانی با پاسخ تشریحی</p>
+                    <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center justify-center">
+                        دانلود
+                        <i class="fas fa-download mr-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Resource 3 -->
+                <div class="bg-white rounded-xl shadow-md p-6 text-center">
+                    <div class="bg-blue-100 text-blue-900 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-video text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">ویدیوهای آموزشی</h3>
+                    <p class="text-gray-600 mb-4">فیلم‌های تدریس تمام مباحث کتاب درسی</p>
+                    <a href="#" class="text-blue-900 font-medium hover:text-yellow-400 flex items-center justify-center">
+                        مشاهده
+                        <i class="fas fa-play mr-2"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 bg-blue-900 text-white p-8 flex items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-4">کتاب کار فیزیک هشتم</h3>
+                            <p class="mb-6">
+                                کتاب کار اختصاصی شامل تمرین‌های طبقه‌بندی شده، آزمایش‌های عملی و سوالات مفهومی برای هر فصل از کتاب درسی
+                            </p>
+                            <div class="flex space-x-4 space-x-reverse">
+                                <a href="#" class="bg-yellow-400 hover:bg-yellow-300 text-blue-900 font-bold py-2 px-6 rounded-full transition">
+                                    دانلود نمونه
+                                </a>
+                                <a href="#" class="border-2 border-white hover:bg-white hover:text-blue-900 font-bold py-2 px-6 rounded-full transition">
+                                    اطلاعات بیشتر
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 p-8 flex justify-center items-center">
+                        <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Physics workbook" class="rounded-lg shadow-md w-full max-w-xs">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-blue-900 mb-4">پرسش و پاسخ</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">سوالات خود را درباره فیزیک از من بپرسید</p>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto bg-gray-50 rounded-xl shadow-md p-8">
+                <form id="contactForm">
+                    <div class="mb-6">
+                        <label for="name" class="block text-gray-700 font-medium mb-2">نام شما</label>
+                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="email" class="block text-gray-700 font-medium mb-2">ایمیل (اختیاری)</label>
+                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent">
+                    </div>
+                    <div class="mb-6">
+                        <label for="question" class="block text-gray-700 font-medium mb-2">سوال شما</label>
+                        <textarea id="question" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-transparent" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 px-8 rounded-full transition">
+                            ارسال سوال
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6 text-center">
+                    <div class="bg-blue-100 text-blue-900 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">ایمیل</h3>
+                    <p class="text-gray-600">physics.teacher@example.com</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 text-center">
+                    <div class="bg-blue-100 text-blue-900 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-phone-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">تلفن</h3>
+                    <p class="text-gray-600">۰۹۱۲ ۱۲۳ ۴۵۶۷</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-6 text-center">
+                    <div class="bg-blue-100 text-blue-900 p-4 rounded-full inline-block mb-4">
+                        <i class="fas fa-map-marker-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-blue-900 mb-2">آدرس</h3>
+                    <p class="text-gray-600">تهران، خیابان انقلاب، دبیرستان نمونه دولتی</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <div class="bg-yellow-400 text-blue-900 p-2 rounded-full">
+                            <i class="fas fa-atom text-xl"></i>
+                        </div>
+                        <span class="font-bold text-xl">فیزیک هشتم</span>
+                    </div>
+                    <p class="mt-2 text-blue-200">آموزش فیزیک به زبان ساده و جذاب</p>
+                </div>
+                
+                <div class="flex space-x-6 space-x-reverse">
+                    <a href="#" class="text-blue-200 hover:text-yellow-400 text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-blue-200 hover:text-yellow-400 text-xl">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="#" class="text-blue-200 hover:text-yellow-400 text-xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="#" class="text-blue-200 hover:text-yellow-400 text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-800 mt-8 pt-8 text-center text-blue-200">
+                <p>© ۱۴۰۲ - تمام حقوق برای استاد مصطفی طاهریان محفوظ است</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md mx-4">
+            <div class="text-center">
+                <div class="bg-green-100 text-green-800 p-4 rounded-full inline-block mb-4">
+                    <i class="fas fa-check-circle text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-2">سوال شما ارسال شد!</h3>
+                <p class="text-gray-600 mb-6">من در اولین فرصت به سوال شما پاسخ خواهم داد.</p>
+                <button id="closeModal" class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-full transition">
+                    متوجه شدم
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        }
+        
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const successModal = document.getElementById('successModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            contactForm.reset();
+            successModal.classList.remove('hidden');
+        });
+        
+        closeModal.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
