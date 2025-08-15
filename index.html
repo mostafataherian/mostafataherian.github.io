@@ -57,6 +57,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
+            align-items: stretch;
         }
 
         /* --- Branch Card --- */
@@ -69,7 +70,6 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         .branch-card:hover {
@@ -90,17 +90,31 @@
             margin-left: 0.75rem;
         }
 
+        .branch-card .description {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #555;
+            min-height: 50px;
+        }
+
         /* --- Sub-specialization List --- */
+        .sub-fields-container h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #333;
+            text-align: right;
+        }
         .sub-fields-list {
             list-style: none;
             padding: 0;
-            margin: 1rem 0 0 0;
+            margin: 0 0 1rem 0;
             text-align: right;
         }
         .sub-fields-list li {
-            padding: 0.6rem 0.5rem;
+            padding: 0.5rem 0.5rem;
             border-bottom: 1px solid #f0f0f0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
         .sub-fields-list li:last-child {
             border-bottom: none;
@@ -109,26 +123,6 @@
             content: "•";
             color: #005a9c;
             margin-left: 8px;
-            font-weight: bold;
-        }
-
-        /* --- Academic Level Tags --- */
-        .academic-levels {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .level-tag {
-            background-color: #dceaf5;
-            color: #005a9c;
-            padding: 0.25rem 0.75rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
             font-weight: bold;
         }
 
@@ -151,86 +145,78 @@
 
         <section class="bachelor-section">
             <h2>🎓 مقطع کارشناسی (عمومی)</h2>
-            <p>در مقطع کارشناسی، مهندسی برق معمولاً به صورت عمومی ارائه می‌شود و دانشجویان با مبانی تمام گرایش‌های زیر آشنا می‌شوند.</p>
+            <p>در مقطع کارشناسی، مهندسی برق معمولاً به صورت عمومی ارائه می‌شود و دانشجویان با مبانی تمام گرایش‌ها آشنا می‌شوند.</p>
         </section>
 
         <div class="branches-grid">
             <div class="branch-card" id="power">
-                <div>
-                    <h2><span class="icon">⚡</span>قدرت</h2>
+                <h2><span class="icon">⚡</span>قدرت</h2>
+                <p class="description">این گرایش به تولید، انتقال و توزیع انرژی الکتریکی در مقیاس بزرگ و همچنین طراحی ماشین‌های الکتریکی می‌پردازد.</p>
+                <div class="sub-fields-container">
+                    <h4>زیرگرایش‌های ارشد و دکتری:</h4>
                     <ul class="sub-fields-list">
                         <li>سیستم‌های قدرت</li>
                         <li>الکترونیک قدرت و ماشین‌های الکتریکی</li>
                     </ul>
                 </div>
-                <div class="academic-levels">
-                    <span class="level-tag">کارشناسی ارشد</span>
-                    <span class="level-tag">دکتری</span>
-                </div>
             </div>
 
             <div class="branch-card" id="electronics">
-                <div>
-                    <h2><span class="icon">🤖</span>الکترونیک</h2>
+                <h2><span class="icon">🤖</span>الکترونیک</h2>
+                <p class="description">این گرایش بر طراحی و ساخت قطعات و مدارهای الکترونیکی از مقیاس نانو تا سیستم‌های پیچیده دیجیتال تمرکز دارد.</p>
+                 <div class="sub-fields-container">
+                    <h4>زیرگرایش‌های ارشد و دکتری:</h4>
                     <ul class="sub-fields-list">
-                        <li>مدارهای مجتمع</li>
+                        <li>مدارهای مجتمع (IC)</li>
                         <li>ادوات میکرو و نانوالکترونیک</li>
-                        <li>الکترونیک دیجیتال</li>
-                        <li>اپتوالکترونیک</li>
+                        <li>الکترونیک دیجیتال و اپتوالکترونیک</li>
                     </ul>
-                </div>
-                <div class="academic-levels">
-                    <span class="level-tag">کارشناسی ارشد</span>
-                    <span class="level-tag">دکتری</span>
                 </div>
             </div>
 
             <div class="branch-card" id="telecom">
-                <div>
-                    <h2><span class="icon">📡</span>مخابرات</h2>
-                     <ul class="sub-fields-list">
+                <h2><span class="icon">📡</span>مخابرات</h2>
+                <p class="description">این گرایش با ارسال، دریافت و پردازش اطلاعات (سیگنال) از طریق کانال‌های مختلف مانند فیبر نوری یا امواج بی‌سیم سروکار دارد.</p>
+                 <div class="sub-fields-container">
+                    <h4>زیرگرایش‌های ارشد و دکتری:</h4>
+                    <ul class="sub-fields-list">
                         <li>میدان و موج</li>
                         <li>مخابرات سیستم</li>
-                        <li>مخابرات شبکه</li>
-                        <li>مخابرات رمز</li>
+                        <li>مخابرات شبکه و رمز</li>
                     </ul>
-                </div>
-                <div class="academic-levels">
-                    <span class="level-tag">کارشناسی ارشد</span>
-                    <span class="level-tag">دکتری</span>
                 </div>
             </div>
 
             <div class="branch-card" id="control">
-                <div>
-                    <h2><span class="icon">🕹️</span>کنترل</h2>
-                    <p>این گرایش به طراحی سیستم‌های خودکار برای کنترل فرآیندها و دستگاه‌ها می‌پردازد و خود یک حوزه تخصصی در مقاطع تکمیلی است.</p>
-                </div>
-                <div class="academic-levels">
-                    <span class="level-tag">کارشناسی ارشد</span>
-                    <span class="level-tag">دکتری</span>
+                <h2><span class="icon">🕹️</span>کنترل</h2>
+                <p class="description">این گرایش به مدل‌سازی ریاضی و کنترل خودکار سیستم‌های دینامیکی، از ربات‌ها گرفته تا فرآیندهای صنعتی پیچیده می‌پردازد.</p>
+                <div class="sub-fields-container">
+                    <h4>حوزه تخصصی ارشد و دکتری:</h4>
+                    <ul class="sub-fields-list">
+                        <li>این گرایش خود یک حوزه تخصصی و گسترده در مقاطع تکمیلی است.</li>
+                    </ul>
                 </div>
             </div>
 
             <div class="branch-card" id="mechatronics">
-                <div>
-                    <h2><span class="icon">🦾</span>مکاترونیک</h2>
-                    <p>این رشته تلفیقی از مهندسی مکانیک، الکترونیک و کامپیوتر است که در مقاطع تکمیلی به صورت تخصصی دنبال می‌شود.</p>
-                </div>
-                <div class="academic-levels">
-                    <span class="level-tag">کارشناسی ارشد</span>
-                    <span class="level-tag">دکتری</span>
+                <h2><span class="icon">🦾</span>مکاترونیک</h2>
+                <p class="description">این رشته تلفیقی از مهندسی مکانیک، الکترونیک، کامپیوتر و کنترل است که به ساخت سیستم‌های هوشمند مانند ربات‌ها می‌پردازد.</p>
+                 <div class="sub-fields-container">
+                    <h4>حوزه تخصصی ارشد و دکتری:</h4>
+                    <ul class="sub-fields-list">
+                         <li>این رشته به صورت تخصصی در مقاطع تکمیلی دنبال می‌شود.</li>
+                    </ul>
                 </div>
             </div>
 
             <div class="branch-card" id="bioelectric">
-                <div>
-                    <h2><span class="icon">❤️</span>بیوالکتریک</h2>
-                    <p>این گرایش که به آن مهندسی پزشکی نیز می‌گویند، در مقاطع تکمیلی بر کاربرد برق در علوم پزشکی و زیستی تمرکز دارد.</p>
-                </div>
-                <div class="academic-levels">
-                    <span class="level-tag">کارشناسی ارشد</span>
-                    <span class="level-tag">دکتری</span>
+                <h2><span class="icon">❤️</span>بیوالکتریک</h2>
+                <p class="description">این گرایش که به آن مهندسی پزشکی نیز می‌گویند، بر کاربرد اصول مهندسی برق در تحلیل سیستم‌های زنده و طراحی تجهیزات پزشکی تمرکز دارد.</p>
+                 <div class="sub-fields-container">
+                    <h4>حوزه تخصصی ارشد و دکتری:</h4>
+                    <ul class="sub-fields-list">
+                        <li>این گرایش خود یک حوزه تخصصی و گسترده در مقاطع تکمیلی است.</li>
+                    </ul>
                 </div>
             </div>
         </div>
